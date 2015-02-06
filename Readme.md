@@ -1,4 +1,4 @@
-CouchLite.js
+# CouchLite.js
 
 This is an ongoing project to make the couchbase lite usage easier in phonegap apps.
 
@@ -8,14 +8,14 @@ the same time, keep the example as simple as I can. You're free to change it and
 This work is based on the projects CouchChat and TodoLite.
 
 
-Preconditions
+## Preconditions
 
 1. Create a phonegap project.
 2. Copy the SyncManager.js and coax.js files into www directory.
 3. Include those files in the index.html.
 
 
-Example:
+## Example:
 
 ```
 var pull = new SyncManager({ 
