@@ -34,6 +34,7 @@ var push = new SyncManager({
 	continuous: true 
 });
 
+
 pull.addListener('started', function () {
 	console.log('Pull sync has started.');
 });
@@ -41,6 +42,11 @@ pull.addListener('started', function () {
 pull.addListener('error', function (err) {
 	console.error('Replication error: ', JSON.stringify(err));
 });
+
+pull.addListener('synched', function () {
+	console.log('Pull sync finished');
+});
+
 
 pull.start();
 
