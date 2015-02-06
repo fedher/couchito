@@ -1,6 +1,6 @@
 CouchLite.js
 
-This is an ongoing project to make the couchbase usage easier in phonegap apps.
+This is an ongoing project to make the couchbase lite usage easier in phonegap apps.
 
 I used the EventTarget class in order to add events support to custom JavaScript objects and, at
 the same time, keep the example as simple as I can. You're free to change it and use any library.
@@ -17,6 +17,7 @@ Preconditions
 
 Example:
 
+```
 var pull = new SyncManager({ 
 	target: 'dbname', 
 	source: { 
@@ -48,4 +49,4 @@ pull.waitForSync(function () {
 
 	push.start();
 });
-
+```
