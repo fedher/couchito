@@ -16,7 +16,12 @@ This work is based on the projects CouchChat and TodoLite.
 3. Include those files in the index.html.
 
 
-## Couch example:
+## Couch class
+
+Couch uses internally two instances of a sync manager, one for pulling changes and another one for
+pushing them to the Sync Gateway.
+
+### Example
 
 ```
 var couch = new Couch();
@@ -33,10 +38,45 @@ couch.addListener('pull.synched', function () {
     // ...
 });
 
+// Creates a new document.
+var doc = {
+    title: 'foo',
+    type: 'news',
+    text: 'bar'
+};
+
+couch.post(
+    {
+        doc: doc
+    }, 
+    function (err, newDoc) {
+        if (err) {
+            console.error('Error: ', JSON.stringify(err));
+            return;
+        }
+
+        console.log('resp: ', JSON.stringify(newDoc));
+
+        // Sets up the new id and rev_id.
+        doc.id = newDoc.id;
+        doc._rev = newDoc.rev;
+    }
+);
+
+// Gets a doc.
+couch.get({ doc: id }, callback);
+
+// Updates a doc.
+couch.put({ doc: doc }, callback);
+
 ```
 
 
-## SyncManager example:
+## SyncManager class
+
+This class is used to start the replication (pull or push, or both) process.
+
+## Example
 
 ```
 var pull = new SyncManager({ 
@@ -78,8 +118,19 @@ pull.waitForSync(function () {
 });
 ```
 
+
 ## TODO
 
 - Add a class as a wrapper to make the HTTP requests (implement strategy pattern maybe), in order
 not to depend on coax library.
+
+- Modify the EventTarget to allow adding multiple event listeners in an configuration object like this:
+
+```
+pull.addListeners({
+    'processing': handler,
+    'idle': handler,
+    ...
+});
+```
 
