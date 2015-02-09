@@ -1,6 +1,6 @@
-# CouchLite.js
+# Couchito.js
 
-This is an ongoing project to make the couchbase lite usage easier in phonegap apps.
+This is an ongoing project to make the Couchbase Lite usage easier in Phonegap apps.
 
 I used the EventTarget class in order to add events support to custom JavaScript objects and, at
 the same time, keep the example as simple as I can. You're free to change it and use any library.
