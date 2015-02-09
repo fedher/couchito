@@ -57,3 +57,9 @@ pull.waitForSync(function () {
 	push.start();
 });
 ```
+
+## TODO
+
+- Add a class as a wrapper to make the HTTP requests (implement strategy pattern maybe), in order
+not to depend on coax library.
+
