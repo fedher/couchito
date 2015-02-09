@@ -1,9 +1,10 @@
-# CouchLite.js
+# Couchito.js
 
-This is an ongoing project to make the couchbase lite usage easier in phonegap apps.
+This is an ongoing project to make the Couchbase Lite usage easier in Phonegap apps.
 
 I used the EventTarget class in order to add events support to custom JavaScript objects and, at
-the same time, keep the example as simple as I can. You're free to change it and use any library.
+the same time, keep the example as simple as I can. You're free to change the classes and use any 
+other library.
 
 This work is based on the projects CouchChat and TodoLite.
 
@@ -11,7 +12,7 @@ This work is based on the projects CouchChat and TodoLite.
 ## Preconditions
 
 1. Create a phonegap project.
-2. Copy the SyncManager.js and coax.js files into www directory.
+2. Copy the SyncManager.js, Couch.js and coax.js files into www directory.
 3. Include those files in the index.html.
 
 
@@ -76,3 +77,9 @@ pull.waitForSync(function () {
 	push.start();
 });
 ```
+
+## TODO
+
+- Add a class as a wrapper to make the HTTP requests (implement strategy pattern maybe), in order
+not to depend on coax library.
+
