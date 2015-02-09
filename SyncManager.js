@@ -47,7 +47,7 @@ SyncManager.prototype.getTasks = function (sessionId, callback) {
             return callback(err);
         }
 
-        if (!tasks || tasks instanceof Array && tasks.length === 0) {
+        if (!tasks || (tasks instanceof Array && tasks.length === 0)) {
             return callback('No task to process.');
         }
 
