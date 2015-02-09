@@ -15,7 +15,27 @@ This work is based on the projects CouchChat and TodoLite.
 3. Include those files in the index.html.
 
 
-## Example:
+## Couch example:
+
+```
+var couch = new Couch();
+
+couch.init(dbname);
+
+// Starts up the sync process.
+couch.sync(email, password, function () {
+	// ...
+});
+
+couch.addListener('pull.synched', function () {    
+    console.log('pull.synched event!');
+    // ...
+});
+
+```
+
+
+## SyncManager example:
 
 ```
 var pull = new SyncManager({ 
