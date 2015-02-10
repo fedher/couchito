@@ -134,4 +134,5 @@ pull.addListeners({
 });
 ```
 
-- Fire an event when there're new changes.
+- Fire an event when detect new changes to relaunch the sync process.
+
