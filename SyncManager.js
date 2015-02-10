@@ -28,11 +28,9 @@ SyncManager.prototype.start = function (settings) {
         }
 
         console.log('syncmanager: ', 'Sync: ', JSON.stringify(info));
-
-        me.sessionId = info.session_id;
-
         console.log('syncmanager: ', 'Ready to process tasks.');
 
+        me.sessionId = info.session_id;
         me.dispatchEvent('started');
     });
 };
@@ -58,7 +56,6 @@ SyncManager.prototype.getTasks = function (sessionId, callback) {
             // how it's returned back from couchbase.
             if (tasks[i].task === sessionId) {
                 console.log(JSON.stringify(tasks[i]));
-
                 return callback(tasks[i]);
             }
         }
@@ -107,7 +104,7 @@ SyncManager.prototype.processTasks = function (sessionId, callback) {
         else if (status.indexOf(task.status) > -1) {
             // Fires idle, stopped, active or offline events.
             me.dispatchEvent(task.status.toLowerCase(), task);
-            console.log('syncmanager: ', 'Fired: '+task.status);
+            console.log('syncmanager: ', 'Fired: ', task.status.toLowerCase());
             return callback();
         }
         else {
@@ -117,7 +114,6 @@ SyncManager.prototype.processTasks = function (sessionId, callback) {
         // There're no tasks to process or it couldn't get the current task, so 'none' event if fired.
         me.dispatchEvent('none');
         console.log('syncmanager: ', 'Fired: none');
-
         return callback();
     });
 };
