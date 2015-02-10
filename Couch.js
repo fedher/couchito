@@ -189,7 +189,6 @@ Couch.prototype.sync = function (user, password, callback) {
 };
 
 
-// This is only for testing.
 Couch.prototype.getChanges = function (opts, callback) {
     var me = this;
 
@@ -198,7 +197,7 @@ Couch.prototype.getChanges = function (opts, callback) {
         include_docs: true,
         conflicts: true,
         style: 'all_docs',
-        since: 0, // @@ TODO: replace this by the info.update_seq returned when the db is set up.
+        since: 0, // Replace this value by the info.update_seq returned when the db is set up.
         limit: 100
     };
 
