@@ -1,5 +1,6 @@
 /**
  * Copyright (c) 2010 Nicholas C. Zakas. All rights reserved.
+ *               2015 Modified by J. Federico Hernandez
  * MIT License
  */
 
@@ -13,6 +14,15 @@ EventTarget.prototype.addListener = function (type, listener) {
 	}
 
 	this._listeners[type].push(listener);
+};
+
+EventTarget.prototype.addListeners = function (config) {
+	var type, listener;
+
+	for (type in config) {
+		listener = config[type];
+		this.addListener(type, listener);
+	}
 };
 
 EventTarget.prototype.dispatchEvent = function (event) {
@@ -48,9 +58,8 @@ EventTarget.prototype.removeListener = function (type, listener) {
 		for (i = 0; listeners[i]; i++) {
 			if (listeners[i] === listener) {
 				listeners.splice(i, 1);
-				// break;
+				break;
 			}
 		}
 	}
 };
-

@@ -135,29 +135,38 @@ SyncManager.prototype.waitForSync = function (callback) {
         }, 2500);
     }
 
-    me.addListener('none', processTask);
-    me.addListener('processing', function (task) {
-        console.log('-- PROCESSING event');
-        processTask();
-    });
-    me.addListener('idle', function (task) {
-        console.log('-- IDLE event');
-        me.dispatchEvent('synched');
-        callback(task);
-    });
-    me.addListener('active', function (task) {
-        console.log('-- ACTIVE event');
-        // @@ README: Should I call processTask() from here?
-        processTask();
-    });
-    me.addListener('offline', function (task) {
-        console.log('-- OFFLINE event');
-        processTask();
-    });
-    me.addListener('stopped', function (task) {
-        console.log('-- STOPPED event');
-        me.dispatchEvent('synched');
-        callback(task);
+    me.addListeners({
+        none: function (task) {
+            processTask();
+        },
+
+        processing: function (task) {
+            console.log('-- PROCESSING event');
+            processTask();
+        },
+
+        idle: function (task) {
+            console.log('-- IDLE event');
+            me.dispatchEvent('synched');
+            callback(task);
+        },
+
+        active: function (task) {
+            console.log('-- ACTIVE event');
+            // @@ README: Should I call processTask() from here?
+            processTask();
+        },
+
+        offline: function (task) {
+            console.log('-- OFFLINE event');
+            processTask();
+        },
+
+        stopped: function (task) {
+            console.log('-- STOPPED event');
+            me.dispatchEvent('synched');
+            callback(task);
+        }
     });
 
     // Starts up the loop.
