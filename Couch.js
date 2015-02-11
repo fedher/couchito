@@ -3,7 +3,7 @@
  * MIT License
  */
 
-var Couch = function (config) {
+function Couch(config) {
     EventTarget.call(this);
 
     this.dbHost = config.dbHost || 'http://lite.couchbase./';
@@ -14,6 +14,7 @@ var Couch = function (config) {
 };
 
 Couch.prototype = new EventTarget();
+Couch.prototype.constructor = Couch;
 
 Couch.prototype.init = function (dbName) {
     var me = this;

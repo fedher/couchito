@@ -3,16 +3,17 @@
  * MIT License
  */
 
-var SyncManager = function (settings) {
+function SyncManager(settings) {
     EventTarget.call(this);
 
     this.config = settings || {};
 
     this.coax = require('coax');
-    this.dbHost = settings.dbHost || 'http://lite.couchbase./';
+    this.dbHost = this.config.dbHost || 'http://lite.couchbase./';
 };
 
 SyncManager.prototype = new EventTarget();
+SyncManager.prototype.constructor = SyncManager;
 
 SyncManager.prototype.start = function (settings) {
     var me = this;

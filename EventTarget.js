@@ -4,9 +4,11 @@
  * MIT License
  */
 
-var EventTarget = function () {
+function EventTarget() {
 	this._listeners = {};	
 };
+
+EventTarget.prototype.constructor = EventTarget;
 
 EventTarget.prototype.addListener = function (type, listener) {
 	if (this._listeners[type] === undefined) {
@@ -14,6 +16,10 @@ EventTarget.prototype.addListener = function (type, listener) {
 	}
 
 	this._listeners[type].push(listener);
+};
+
+EventTarget.prototype.on = function (type, listener) {
+	this.addListener(type, listener);
 };
 
 EventTarget.prototype.addListeners = function (config) {
@@ -47,6 +53,10 @@ EventTarget.prototype.dispatchEvent = function (event) {
 			listeners[i].call(this, event);
 		}
 	}
+};
+
+EventTarget.prototype.fireEvent = function (event) {
+	this.dispatchEvent(event);
 };
 
 EventTarget.prototype.removeListener = function (type, listener) {
