@@ -24,16 +24,16 @@ pushing them to the Sync Gateway.
 ### Example
 
 ```
-var couch = new Couch();
+var couchito = new Couch();
 
-couch.init(dbname);
+couchito.init(dbname);
 
 // Starts up the sync process.
-couch.sync(email, password, function () {
+couchito.sync(email, password, function () {
 	// ...
 });
 
-couch.addListener('pull.synched', function () {    
+couchito.addListener('pull.synched', function () {    
     console.log('pull.synched event!');
     // ...
 });
@@ -45,7 +45,7 @@ var doc = {
     text: 'bar'
 };
 
-couch.post(
+couchito.post(
     {
         doc: doc
     }, 
@@ -58,16 +58,16 @@ couch.post(
         console.log('resp: ', JSON.stringify(newDoc));
 
         // Sets up the new id and rev_id.
-        doc.id = newDoc.id;
+        doc._id = newDoc.id;
         doc._rev = newDoc.rev;
     }
 );
 
 // Gets a doc.
-couch.get({ doc: id }, callback);
+couchito.get({ doc: id }, callback);
 
 // Updates a doc.
-couch.put({ doc: doc }, callback);
+couchito.put({ doc: doc }, callback);
 
 ```
 
@@ -124,15 +124,5 @@ pull.waitForSync(function () {
 - Add a class as a wrapper to make the HTTP requests (implement strategy pattern maybe), in order
 not to depend on coax library.
 
-- Modify the EventTarget to allow adding multiple event listeners in an configuration object like this:
-
-```
-pull.addListeners({
-    'processing': handler,
-    'idle': handler,
-    ...
-});
-```
-
-- Fire an event when detect new changes to relaunch the sync process.
+- Fire an event when detect new changes in the db.
 
