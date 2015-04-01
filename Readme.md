@@ -12,8 +12,11 @@ This work is based on the projects CouchChat and TodoLite.
 ## Preconditions
 
 1. Create a phonegap project.
-2. Copy the SyncManager.js, Couch.js and coax.js files into www directory.
+2. Copy the SyncManager.js, Couch.js, coax.js and EventTarget.js files into www directory.
 3. Include those files in the index.html.
+
+If you use a library that already has support for events in JavaScript, then don't include 
+EventTarget.js. You'll need to modify the code to get rid of EventTarget.
 
 
 ## Couch class
